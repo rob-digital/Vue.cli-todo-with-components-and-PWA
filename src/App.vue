@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container is-widescreen">
 
-  <Slide right noOverlay>
+  <Slide right noOverlay width="200">
 
         <span class="menu-link"><router-link class="menu-link" to="/">
         <i class="fas fa-home"></i>
@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <style lang="scss">
-$orange-color: #f07109;
+$my-color: #f11212;
 $block: block;
 
 #app {
@@ -44,16 +44,16 @@ $block: block;
 
 .nav a {
   font-weight: bold;
-  color: $orange-color;
+  color: $my-color;
 }
 
 .menu-link a.router-link-exact-active {
-  color: $orange-color;
+  color: $my-color;
 }
 
 .menu-link a{
   display: $block !important;
-   color: $orange-color;
+   color: $my-color;
 }
 
 </style>

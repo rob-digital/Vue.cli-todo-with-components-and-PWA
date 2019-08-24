@@ -11,8 +11,8 @@
                         @keyup.enter="saveItem">
 
                         <button class="button "
-                        style="margin-left: 20px; background-color: #f07109"
-                        :disabled="newItem.length === 0"
+                        style="margin-left: 20px; background-color: #f11212"
+
                         @click="saveItem"
                               ><span class="icon">
                                 <i class="fas fa-plus"></i>
@@ -33,9 +33,12 @@
                                     </p>
                                 </li>
                             </ul>
-
         </article>
-
+        <a class="button "
+        id="clearAllButton"
+        v-if="items.length !== 0"
+        @click="clearAll"
+        >Clear All</a>
 
 </div>
 
@@ -43,22 +46,26 @@
 
 
 <script>
-
-
+const STORAGE_KEY = "todo-storage"
 export default {
 
     data() {
       return {
         newItem: '',
-        items: []
+        items: [],
+        items2: []
 
       }
     },
-        methods: {
-        saveItem: function () {
+     mounted() {
+        this.items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    },
+methods: {
+      saveItem: function () {
             if (this.newItem.length != 0) {
             this.items.push(this.newItem)
             this.newItem = ''
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items))
             }
         },
 
@@ -66,19 +73,31 @@ export default {
             var itemIndex =  this.items.indexOf(item)
             this.items.splice(itemIndex, 1)
         },
-
+        clearAll: function() {
+          this.items = [],
+          localStorage.clear()
+       }
     }
   }
 
 </script>
 
-<style>
+<style lang="scss">
+$grey: #b6b1b1;
+#clearAllButton{
+  background-color: $grey;
+  color: white;
+  margin: 10% 0 5% 0
+}
 article{
   margin-top: -60px;
 }
+.message-header{
+  border-radius: 0 0 0 0 !important
+}
 @media only screen and (max-width: 600px) {
 article{
-  margin-top: 0
+  margin-top: -2%
 }
 }
 </style>

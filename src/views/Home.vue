@@ -1,43 +1,25 @@
 <template>
   <div class="home ">
 
-
-
  <main id="page-wrap">
-
-        <img src="../assets/checklist2a.jpg">
+        <img src="../assets/checklist1.jpg">
         <PageHeader message="My ToDo List"/>
 
-
-
-        <MainBody class="main"/>
-
+          <MainBody class="main"/>
  </main>
-  </div>
+</div>
 </template>
-
 
 <script>
 
 import PageHeader from '@/components/PageHeader.vue'
-import MainBody from  '@/components/MainBody.vue'
-import   Slide   from '../App.vue'
-
+import MainBody from '@/components/MainBody.vue'
 
 export default {
   name: 'home',
   components: {
     PageHeader,
-    MainBody,
-    Slide,
-
+    MainBody
   }
 }
 </script>
-
-<style scoped>
-
-
-
-
-</style>
