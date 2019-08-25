@@ -60,7 +60,8 @@ margin: 5% 20px
   height: 2px;
 }
 img {
- width: 30%
+ width: 30%;
+
 }
 .columns{
   margin-top: 5%
@@ -73,6 +74,7 @@ img {
 
 img {
  width: 50%;
+ margin-top: 10%
 }
 
 }

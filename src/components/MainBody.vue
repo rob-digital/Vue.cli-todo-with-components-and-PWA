@@ -11,7 +11,7 @@
                         @keyup.enter="saveItem">
 
                         <button class="button "
-                        style="margin-left: 20px; background-color: #f11212"
+                        style="margin-left: 20px; background-color: #ff7f07"
 
                         @click="saveItem"
                               ><span class="icon">
@@ -94,6 +94,9 @@ article{
 }
 .message-header{
   border-radius: 0 0 0 0 !important
+}
+.panel-block{
+  text-align: left !important
 }
 @media only screen and (max-width: 600px) {
 article{
