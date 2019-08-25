@@ -1,6 +1,6 @@
 {
-  "name": "todo_with_components",
-  "short_name": "todo_with_components",
+  "name": "My_ToDo",
+  "short_name": "My_ToDo",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
