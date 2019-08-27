@@ -12,18 +12,18 @@
 
                         <button class="button "
                         style="margin-left: 20px; background-color: #ff7f07"
-
-                        @click="saveItem"
-                              ><span class="icon">
-                                <i class="fas fa-plus"></i>
-                              </span></button>
-
+                        @click="saveItem">
+                        <span class="icon"><i class="fas fa-plus"></i></span></button>
                 </div>
-
                             <ul>
-                                <li v-bind:key="item.id" v-for="item in items">
-                                    <p class="panel-block " style="display: block" >
-                                        {{item}}
+                                <li class="todo" v-bind:key="item.id"
+                                 v-for="item in items"
+                                :class="{'isdone': item.isCompleted}">
+
+                                    <p class="panel-block"
+                                    style="display: block"
+                                    @click="toggleDone(item)">
+                                        {{item.title}}
                                         <button
                                         class="delete"
                                         aria-label="delete"
@@ -34,7 +34,7 @@
                                 </li>
                             </ul>
         </article>
-        <a class="button "
+        <a class="button"
         id="clearAllButton"
         v-if="items.length !== 0"
         @click="clearAll"
@@ -47,39 +47,44 @@
 
 <script>
 const STORAGE_KEY = "todo-storage"
-export default {
 
+export default {
     data() {
       return {
         newItem: '',
-        items: [],
-        items2: []
-
+        items: []
       }
-    },
-     mounted() {
-        this.items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     },
 methods: {
       saveItem: function () {
-            if (this.newItem.length != 0) {
-            this.items.push(this.newItem)
+            let input = this.newItem.trim()
+            if (input.length != 0) {
+            this.items.push({
+               id: this.items.length+1,
+                title: this.newItem,
+                isCompleted: false
+            })
             this.newItem = ''
             localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items))
             }
         },
-
         removeElement (item) {
             var itemIndex =  this.items.indexOf(item)
             this.items.splice(itemIndex, 1)
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items))
         },
         clearAll: function() {
           this.items = [],
           localStorage.clear()
-       }
-    }
+        },
+        toggleDone: function(item) {
+        item.isCompleted = !item.isCompleted;
+        }
+    },
+      mounted() {
+        this.items = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    },
   }
-
 </script>
 
 <style lang="scss">
@@ -98,9 +103,13 @@ article{
 .panel-block{
   text-align: left !important
 }
+.isdone{
+   text-decoration: line-through;
+}
+
 @media only screen and (max-width: 600px) {
 article{
   margin-top: -2%
-}
+  }
 }
 </style>
