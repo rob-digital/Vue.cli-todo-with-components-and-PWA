@@ -79,6 +79,7 @@ methods: {
         },
         toggleDone: function(item) {
         item.isCompleted = !item.isCompleted;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items));
         }
     },
       mounted() {
